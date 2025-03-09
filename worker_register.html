@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazi Connector - Worker Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Worker Registration</h1>
+            <form id="registerForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="full_name" placeholder="Full Name" required>
+                <input type="text" id="contact_info" placeholder="Contact Info" required>
+                <input type="text" id="skills" placeholder="Skills" required>
+                <button type="submit">Register</button>
+                <p>Already have an account? <a href="worker_login.html">Login</a></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                full_name: document.getElementById('full_name').value,
+                contact_info: document.getElementById('contact_info').value,
+                skills: document.getElementById('skills').value
+            };
+
+            const response = await fetch('http://localhost:5000/api/worker/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = 'worker_login.html'; // Redirect to login
+            } else {
+                alert(data.error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazi Connector - Role Selection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Welcome to Kazi Connector</h1>
+            <p>Please select your role to continue:</p>
+            <div class="role-selection">
+                <button id="workerBtn" class="role-btn">Worker</button>
+                <button id="employerBtn" class="role-btn">Employer</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('workerBtn').addEventListener('click', () => {
+            window.location.href = 'worker_login.html';
+        });
+
+        document.getElementById('employerBtn').addEventListener('click', () => {
+            window.location.href = 'employer_login.html';
+        });
+    </script>
+</body>
+</html>
